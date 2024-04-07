@@ -47,6 +47,13 @@
   font-size: 13px;
 }
 
+.img-about{
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
 .link-page{
   color: black; /* Встановлюємо колір тексту чорним */
   text-decoration: none;
