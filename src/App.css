@@ -1,9 +1,18 @@
 .App {
   text-align: center;
+  width: 100%;
+  animation: fadeIn 3s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-logo{
+  font-size: 30px;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
@@ -13,8 +22,270 @@
   }
 }
 
+.Link-Text {
+  color: black; /* Встановлюємо колір тексту чорним */
+  text-decoration: none;
+  text-align: right;
+  float: right; 
+  flex-grow: 1;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+.link-Text{
+  color: black; /* Встановлюємо колір тексту чорним */
+  text-decoration: none;
+  text-align: right;
+  float: right; 
+  margin-right: 5px;
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.number{
+  margin-left: 3px;
+  font-size: 13px;
+}
+
+.link-page{
+  color: black; /* Встановлюємо колір тексту чорним */
+  text-decoration: none;
+  text-align: center;  
+  margin-bottom: 10px;
+  flex-grow: 1;
+  
+  
+}
+
+.rectangle-button {
+  /* Загальні стилі для кнопок */
+  padding: 7px 50px; /* Розмір внутрішнього простору кнопки */
+  font-size: 14px; /* Розмір шрифту */
+  background-color: #b6b6b6; /* Колір фону кнопки */
+  border: none; /* Відсутність межі */
+  color: white; /* Колір тексту */
+  text-align: center; /* Вирівнювання тексту по центру */
+  text-decoration: none; /* Відсутність підкреслення тексту */
+  display: inline-block; /* Встановлення кнопки як блокового елемента */
+  cursor: pointer; /* Курсор під час наведення */
+  border-radius: 0px; /* Радіус закруглення кутів кнопки */
+  transition: background-color 0.3s; /* Плавний перехід при зміні коліру фону кнопки */
+    justify-items: center;
+    font-family: "Courier New";
+  letter-spacing: -1px;
+
+}
+
+.rectangle-button:hover {
+  /* Стилі, що застосовуються при наведенні на кнопку */
+  background-color: #898989; /* Зміна коліру фону кнопки */
+}
+
+.top-pan {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #c2c2c2;  
+  font-family: "Courier New";
+  letter-spacing: -1px;
+  border: 2px solid black;
+}
+
+.top-pan-text{
+  color: #484848;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.top-panel {
+  position: fixed; /* фіксована позиція */
+  top: 0; /* верхня границя екрану */
+  left: 5;
+  width: 99%; /* ширина 100% відносно вікна браузера */
+  background-color: #f3f3f3; /* колір фону */
+  color: #c5c5c5; /* колір тексту */
+  padding: 10px; /* відступи */
+  padding-top: 10px; /* Відступ зверху */
+  padding-right: 20px; /* Відступ справа */
+  justify-content: flex-end;
+  padding: 20px; /* Відступи від внутрішнього контенту */
+  border: 2px solid black;
+  font-family: "Courier New";
+  letter-spacing: -1px;
+
+}
+
+.down-panel {
+   position: fixed; /*фіксована позиція */
+  bottom: -100px; /* верхня границя екрану */
+   left: 5;
+  align-items: center;
+  width: 100%; /* ширина 100% відносно вікна браузера */
+  background-color: #c2c2c2; /* колір фону */
+  color: #dfdfdf; /* колір тексту */
+  padding: 10px; /* відступи */
+  /* padding-top: 10px; Відступ зверху */
+  padding-right: 10px; /* Відступ справа  */
+  justify-content: center;
+  padding: 20px; /* Відступи від внутрішнього контенту */
+  border: 2px solid black;
+  transition: bottom 0.3s ease;
+  font-family: "Courier New";
+  letter-spacing: -1px;
+  /* word-spacing: -10px; */
+}
+
+  .down-panel.active {
+    bottom: 0; /* Показати панель, коли вона активна */
+  }
+
+.body-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-container {
+  /* width: 90%; /* Ширина контейнера на весь екран */
+  /* max-width: 1122px; /* Максимальна ширина контейнера */
+  /* overflow-x: auto; /* Горизонтальний скролінг, якщо контент виходить за межі контейнера */
+  /* white-space: nowrap; Запобігає перенесенню тексту на новий рядок */
+  /* background-color: #7a7979; */
+  /* margin-top: 100px; */
+  /* justify-content: center; */ 
+  
+  display: flex;
+  color: #3e3e3e;
+  font-size: 15px;
+  font-family: "Courier New";
+  letter-spacing: -1px;
+  justify-content: center;
+  align-items: center;
+  /* height: 80%; */
+  flex-direction: column;
+  width: 90%;
+  background-color: #dadada9d;
+  overflow-x: auto;
+  /* white-space: nowrap; */
+  margin-top: 93px;
+  margin-bottom: 70px;
+}
+
+/* body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.pic {
+  width: 15px; /* фіксована ширина */
+  height: auto; /* висота автоматично розраховується для збереження пропорцій */
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+  margin-right: 0px;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.container {
+   display: flex; /* Встановлення контейнера flex */
+  align-items: left; /* Вирівнює дочірні елементи по вертикалі */
+}
+
+.table{
+  width: 100%; /* Таблиця займає всю ширину батьківського елемента */
+  max-width: 800px; /* Максимальна ширина таблиці */
+  /* height: 300px; Висота таблиці */
+  align-items: right;
+}
+
+.image {
+  flex: 0 0 auto; /* Зберігає розмір картинки незмінним */
+  margin-right: 20px; /* Додатковий відступ між картинкою і текстом */
+}
+
+.imge {
+  width: 200px; /* фіксована ширина */
+  height: auto; /* висота автоматично розраховується для збереження пропорцій */
+  display: inline-block;
+}
+
+
+
+.text {
+  flex: 1; /* Займає весь доступний простір по горизонталі */
+  text-align: right; 
+}
+
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+body {
+  background-color: #9f9e9e;
+  color: #6d6d6e;
+  font-family: 'Bodoni', serif;
+}
+
+.father {
+  margin-right: 20px; /* Додатковий відступ між логотипом та навігаційною панеллю */
+  width: 100px; /* Задайте ширину зображення за вашими потребами */
+  height: auto; /* Автоматична висота для збереження пропорцій */
+  float: left;
+}
+
+
+
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 98%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  
+}
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+footer {
+  links: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: #bbbbbb;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
