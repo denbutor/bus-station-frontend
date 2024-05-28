@@ -1,54 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
 function DataTableTickets() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [tickets, setTickets] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/Ticket/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Ticket/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setTickets(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching tickets:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>PassengersName<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>OnlineTicket<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>SaleStatus<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.PassengersName}</td>
-                            <td>{item.OnlineTicket}</td>
-                            <td>{item.SaleStatus}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      {/* <h1>Список квитків</h1> */}
+      <table>
+        <thead>
+          <tr>
+            <th>Passengers Name / </th>
+            <th>Online Ticket</th>
+            <th> / Sale Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tickets.map(ticket => (
+            <tr key={ticket.id}>
+              <td>{ticket.passengersName}</td>
+              <td>{ticket.onlineTicket}</td>
+              <td>{ticket.saleStatus}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DataTableTickets;

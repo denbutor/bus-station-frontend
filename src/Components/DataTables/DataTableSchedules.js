@@ -1,57 +1,41 @@
 import React, { useState, useEffect } from 'react';
 
 function DataTableSchedules() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [schedules, setSchedules] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/Schedule/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Schedule/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setSchedules(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching schedules:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>WeekDay<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>DepartureTime<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>ArrivalTime<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>TicketCost<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.WeekDay}</td>
-                            <td>{item.DepartureTime}</td>
-                            <td>{item.ArrivalTime}</td>
-                            <td>{item.TicketCost}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      {/* <h1>Розклад рейсів</h1> */}
+      <table>
+        <thead>
+          <tr>
+            <th>Week Day</th>
+            <th> / Departure Time / </th>
+            <th>Arrival Time / </th>
+            <th>Ticket Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {schedules.map(schedule => (
+            <tr key={schedule.id}>
+              <td>{schedule.weekDay}</td>
+              <td>{schedule.departureTime}</td>
+              <td>{schedule.arrivalTime}</td>
+              <td>{schedule.ticketCost}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DataTableSchedules;

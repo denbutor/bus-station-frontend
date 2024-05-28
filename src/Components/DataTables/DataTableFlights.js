@@ -1,57 +1,41 @@
 import React, { useState, useEffect } from 'react';
 
 function DataTableFlights() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [flights, setFlights] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/Flight/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Flight/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setFlights(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching flights:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>Date<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>DepartureTime<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>ArrivalTime<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>TicketCost<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.Date}</td>
-                            <td>{item.DepartureTime}</td>
-                            <td>{item.ArrivalTime}</td>
-                            <td>{item.TicketCost}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date / </th>
+            <th>Departure Time / </th>
+            <th>Arrival Time / </th>
+            <th>Ticket Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {flights && flights.map(flight => (
+            <tr key={flight.id}>
+              <td>{flight.date}</td>
+              <td>{flight.departureTime}</td>
+              <td>{flight.arrivalTime}</td>
+              <td>{flight.ticketCost}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DataTableFlights;
+    

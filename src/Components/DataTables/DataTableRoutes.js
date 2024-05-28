@@ -1,57 +1,40 @@
 import React, { useState, useEffect } from 'react';
 
 function DataTableRoutes() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [routes, setRoutes] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/Route/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Route/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setRoutes(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching routes:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>Start<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>Finish<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>Distance<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>Duration<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.Start}</td>
-                            <td>{item.Finish}</td>
-                            <td>{item.Distance}</td>
-                            <td>{item.Duration}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th> / Finish / </th>
+            <th>Distance / </th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          {routes && routes.map(route => (
+            <tr key={route.id}>
+              <td>{route.start}</td>
+              <td>{route.finish}</td>
+              <td>{route.distance}</td>
+              <td>{route.duration}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DataTableRoutes;

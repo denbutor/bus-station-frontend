@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "C:/Users/Emin/ReactProjects/bus-station-frontend/src/App.css";
-import BodyTextAboutUs from '../Components/BodyTextAboutUs.js';
+import BodyAbout from '../Components/BodyAbout.js';
 
 
 
@@ -21,7 +21,7 @@ export default class AppAbout extends Component{
         </header> */}
   
         {/* <main className="main"> */}
-        <BodyTextAboutUs/>
+        <BodyAbout/>
   
   {/* </main> */}
 
@@ -36,9 +36,5 @@ export default class AppAbout extends Component{
   
       </div>
     );
-
-  }
-
-
-  
+  } 
 }

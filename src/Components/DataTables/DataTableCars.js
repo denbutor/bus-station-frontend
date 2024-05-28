@@ -1,57 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-function DataTableCars() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+function DataTableCar() {
+  const [cars, setCars] = useState([]);
 
-    useEffect(() => {
-        fetch('/ap/Car/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Car/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setCars(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching cars:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>CarType<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>CarNumber<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>PassengersCount<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.CarType}</td>
-                            <td>{item.CarNumber}</td>
-                            <td>{item.PassengersCount}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      {/* <h1>Список автомобілів</h1> */}
+      <table>
+        <thead>
+          <tr>
+            <th>Car Name / </th>
+            <th>Car Number</th>
+            <th> /Passengers Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cars.map(car => (
+            <tr key={car.id}>             
+              <td>{car.carType}</td>
+              <td>{car.carNumber}</td>
+              <td>{car.passengersCount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-export default DataTableCars;
-
-
+export default DataTableCar;

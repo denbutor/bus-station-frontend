@@ -1,54 +1,38 @@
 import React, { useState, useEffect } from 'react';
 
 function DataTableDrivers() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [drivers, setDrivers] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/Driver/Get')
-            .then(response => response.json())
-            .then(response => {
-                setData(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setIsLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    // Виконання HTTP GET запиту до ендпоінту на бекенді для отримання даних
+    fetch('http://localhost:5152/api/Driver/Get')
+      .then(response => response.json()) // Розшифровка JSON відповіді
+      .then(data => setDrivers(data.data)) // Збереження даних у стані компонента
+      .catch(error => console.error('Error fetching drivers:', error)); // Обробка помилок
+  }, []); // Викликається при монтажі компонента
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th><span style={{ color: '#297373' }}>/</span>DriverPib<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>DriverPhoneNumber<span style={{ color: '#297373' }}>/</span></th>
-                    <th><span style={{ color: '#297373' }}>/</span>Mail<span style={{ color: '#297373' }}>/</span></th>
-                </tr>
-            </thead>
-            <tbody>
-            {data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.DriverPib}</td>
-                            <td>{item.DriverPhoneNumber}</td>
-                            <td>{item.Mail}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>
-    );
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Driver Pib / </th>
+            <th>Driver Phone Number</th>
+            <th> / Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {drivers.map(driver => (
+            <tr key={driver.id}>
+              <td>{driver.driverPib}</td>
+              <td>{driver.driverPhoneNumber}</td>
+              <td>{driver.mail}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DataTableDrivers;

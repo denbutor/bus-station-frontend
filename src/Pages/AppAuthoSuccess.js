@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import 'C:/Users/Emin/ReactProjects/bus-station-frontend/src/App.css';
-import BodyHome from '../Components/BodyHome.js';
+import Tripcode from '../Components/BodyOrderSuccess.js';
 
 
-export default class AppHome extends Component{
+export default class AppAuthoSuccess extends Component{
 
   render(){
 
     return (
     
       <div className="App">
-        
        
       
         {/* <header className="header">
@@ -20,7 +19,7 @@ export default class AppHome extends Component{
         </header> */}
   
         {/* <main className="main"> */}
-          <BodyHome/>
+          <Tripcode/>
           {/* <FooterText/> */}
 
   
