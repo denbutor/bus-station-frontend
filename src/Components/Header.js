@@ -9,8 +9,9 @@ import About from '../Pages/AppAbout';
 import Order from '../Pages/AppOrder'; 
 import Tripcode from '../Pages/AppOrderSuccess.js'; 
 import Authorization from '../Pages/AppAuthorization.js'; 
-import SearchBarStart from './SearchBarStart.js'
-import SearchBarFinish from './SearchBarFinish.js'
+import SearchBarStart1 from './SearchBarStart1.js'
+import SearchBarFinish1 from './SearchBarFinish1.js'
+import SearchBarCarName from './SearchBarCarName.js'
 
 
 export default class Header extends Component {
@@ -37,8 +38,9 @@ export default class Header extends Component {
                     
               </Nav>
               <h style={{ margin: '10px', fontSize: "18px"}}>Find a trip: </h>
-              <SearchBarStart/>
-              <SearchBarFinish/>
+              <SearchBarStart1/>
+              <SearchBarFinish1/>
+              <SearchBarCarName/>
               <Nav className="mr-auto">
                 <Nav.Link href="/order" className="top-pan-text">Order</Nav.Link>
                 <Nav.Link href="/tripcode" className="top-pan-text">Trip code</Nav.Link>                
@@ -54,6 +56,7 @@ export default class Header extends Component {
                 />
                  <Button variant="outline-info" className="top-pan-text">Search</Button> 
               </Form>*/}
+
               <Nav className="mr-auto">
                 <Nav.Link href="/signup" className="top-pan-text">Signup</Nav.Link>
               </Nav>

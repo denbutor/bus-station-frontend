@@ -10,7 +10,7 @@ function Footer() {
   }, []);
 
   const handleScroll = () => {
-    const scrollPosition = window.scrollY;
+    const scrollPosition = window.scrollY;//константа
     const windowHeight = window.innerHeight;
     const documentHeight = document.body.clientHeight;
 

@@ -18,8 +18,8 @@ function BodyAbout() {
             <img className="about-icon" src={Clock} alt="Clock" height="20px"/>
             <h4>History</h4> 
             <p className="text-about">
-              <span>Hello, we are pleased to welcome you to the website of our company selling bus tickets!</span>
-              <span></span>
+              <span>Hello, we are pleased to welcome you to the website of our company selling bus tickets! It was founded in Chernivtsi by </span>
+              <span>Denys Butorin and Arsen Dovhomelia, students of the 3rd year of Computer Engineering (Computer Systems and Networks) of ChNU.</span>
             </p>
           </div>
 
